@@ -39,28 +39,60 @@ html, body {
   align-items: center;
   padding: var(--spacing-lg);
   gap: var(--spacing-lg);
+  width: 100%;
 }
 
 header {
   width: 100%;
+  max-width: 1200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  gap: var(--spacing-md);
+  margin-bottom: var(--spacing-md);
 }
 
 h1 {
-  color: var(--primary-color);
+  color: var(--text-color);
   font-weight: 700;
-  font-size: 2.5rem;
-  flex-grow: 1;
-  text-align: center;
-  /* Adjust margin to keep it centered when icon is present */
-  margin-left: 48px; 
-}
-header > h1:only-child {
-    margin-left: 0;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-sm);
+  white-space: nowrap;
 }
 
+nav {
+    display: flex;
+    gap: var(--spacing-sm);
+    background-color: var(--secondary-color);
+    padding: var(--spacing-xs);
+    border-radius: 999px;
+}
+
+.btn-nav {
+    background-color: transparent;
+    border: none;
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: 999px;
+    font-weight: 500;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    transition: all 0.2s ease-in-out;
+}
+
+.btn-nav.active {
+    background-color: var(--card-background);
+    color: var(--primary-color);
+    font-weight: 700;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.btn-nav:not(.active):hover {
+    background-color: rgba(0,0,0,0.05);
+}
 
 main {
   width: 100%;
@@ -70,12 +102,13 @@ main {
   gap: var(--spacing-lg);
 }
 
-@media (min-width: 992px) {
-  main {
-    grid-template-columns: 1fr 1fr;
-  }
-  main:has(.full-width) {
+main.main-grid {
     grid-template-columns: 1fr;
+}
+
+@media (min-width: 992px) {
+  main.main-grid {
+    grid-template-columns: 1fr 1fr;
   }
 }
 
@@ -136,7 +169,10 @@ textarea {
 }
 
 .btn {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-sm);
   padding: var(--spacing-sm) var(--spacing-lg);
   border: none;
   border-radius: 9999px;
@@ -165,6 +201,7 @@ textarea {
 .btn-secondary {
     background-color: var(--secondary-color);
     color: var(--text-color);
+    border: 1px solid var(--border-color);
 }
 
 .btn-secondary:hover:not(:disabled) {
@@ -206,6 +243,22 @@ textarea {
   font-size: 24px;
 }
 
+.btn-x {
+    background-color: #0F1419;
+    color: #ffffff;
+    width: 100%;
+    margin-top: var(--spacing-md);
+    font-size: 1rem;
+    padding: var(--spacing-md);
+}
+.btn-x:hover {
+    background-color: #272c30;
+}
+.btn-x svg {
+    width: 20px;
+    height: 20px;
+    fill: currentcolor;
+}
 
 .list {
   list-style: none;
@@ -214,6 +267,11 @@ textarea {
   overflow-y: auto;
   padding-right: var(--spacing-sm);
 }
+.list.dense .list-item {
+    padding: var(--spacing-xs) var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+}
+
 
 .list-item {
   display: flex;
@@ -263,6 +321,7 @@ textarea {
 .generated-post-container {
   min-height: 150px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   flex-grow: 1;
@@ -275,6 +334,7 @@ textarea {
   background-color: #f0f8ff;
   white-space: pre-wrap;
   word-wrap: break-word;
+  width: 100%;
 }
 
 .generated-post p {
@@ -347,11 +407,11 @@ h2 .material-icons {
 }
 
 .settings-subtitle {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     font-weight: 500;
     margin-top: var(--spacing-lg);
     margin-bottom: var(--spacing-md);
-    color: var(--text-secondary-color);
+    color: var(--text-color);
 }
 
 .password-input-wrapper {
@@ -412,4 +472,34 @@ h2 .material-icons {
     display: flex;
     justify-content: flex-end;
     gap: var(--spacing-sm);
+}
+
+.caption {
+    font-size: 0.9rem;
+    color: var(--text-secondary-color);
+    margin-top: -8px;
+    margin-bottom: 16px;
+}
+
+.code-block {
+    position: relative;
+    background-color: #2d2d2d;
+    color: #f4f4f4;
+    padding: var(--spacing-md);
+    border-radius: var(--spacing-sm);
+    margin: var(--spacing-md) 0;
+    font-family: 'Courier New', Courier, monospace;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.code-block .copy-btn {
+    position: absolute;
+    top: var(--spacing-sm);
+    right: var(--spacing-sm);
+    color: white;
+}
+
+.code-block .copy-btn:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
